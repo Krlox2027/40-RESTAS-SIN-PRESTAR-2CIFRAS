@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aprendo a restar con el Profesor Carlos Huancaya Matos</title>
+<style>
+:root{font-family:'Trebuchet MS',Arial,sans-serif;color:#24375b}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#d9f7ff,#fff0cb 55%,#ffe2ee);min-height:100vh}main{max-width:820px;margin:auto;padding:22px 16px 42px}header{text-align:center}h1{font-size:clamp(2rem,6vw,3.5rem);margin:10px 0;color:#7448b8}header p{font-size:clamp(1.15rem,3vw,1.5rem)}.card{background:white;border-radius:30px;box-shadow:0 12px 30px #40508025;padding:24px;max-width:590px;margin:20px auto;text-align:center}.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-weight:bold;font-size:1.15rem}.bar{height:17px;background:#e6eaf1;border-radius:20px;overflow:hidden;margin:18px 0}.fill{height:100%;width:0;background:#49bc8d;transition:width .3s}.math{display:inline-grid;grid-template-columns:55px 145px;align-items:center;justify-content:center;margin:10px auto 16px;font-size:clamp(4.5rem,13vw,7rem);font-weight:900;line-height:1.12;font-variant-numeric:tabular-nums}.math .digit{text-align:right}.math .minus{color:#e65b7b;text-align:left}.line{grid-column:1/3;border-top:7px solid #273d69;margin:8px 0 0}.answer{width:68px;min-width:0;max-width:100%;border:5px solid #8ac8f6;border-radius:18px;text-align:center;font-size:4rem;font-weight:bold;color:#273d69;padding:5px;outline-offset:4px}.answer-row{grid-column:2;display:flex;justify-content:flex-end;gap:8px;width:100%;margin:10px 0 0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}input[type="number"]{-moz-appearance:textfield;appearance:textfield}.answer:focus{border-color:#7952c7}.answer-row .answer{text-align:center}.prompt{font-size:1.3rem;font-weight:bold;margin:10px}button{border:0;border-radius:18px;padding:16px 24px;font-size:1.25rem;font-weight:bold;cursor:pointer;min-height:58px}button:focus-visible{outline:4px solid #222;outline-offset:3px}.primary{background:#7750d0;color:white}.next{background:#ffcb47;color:#273d69}.secondary{background:#e7eef8;color:#273d69}.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:20px}.feedback{font-size:1.35rem;font-weight:bold;min-height:38px;margin-top:16px}.success{color:#178052}.error{color:#bf3450}.stars{font-size:2rem;letter-spacing:5px}.hidden{display:none}.footer{text-align:center;font-size:1rem} @media(max-width:450px){.card{padding:18px 12px}.math{grid-template-columns:45px 125px}.answer-row{width:100%}.answer{width:58px;font-size:3.3rem;padding:4px}.answer-row{gap:7px}button{width:100%}}
+
+#confettiCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1000}
+#reaction{position:fixed;inset:0;background:rgba(25,37,65,.35);display:flex;align-items:center;justify-content:center;z-index:1001;padding:18px}
+#reaction.hidden{display:none}
+.reaction-box{background:white;border-radius:30px;padding:30px 25px;text-align:center;box-shadow:0 16px 50px #14213d55;max-width:520px;width:100%}
+.reaction-emoji{font-size:clamp(6rem,20vw,11rem);line-height:1.2}
+.reaction-message{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:900;color:#24375b;margin:12px 0}
+.reaction-timer{font-size:1.15rem;color:#485a77}
+</style>
+</head>
+<body><main><header><div class="stars" aria-hidden="true">🌟 🐻 🌈</div><h1>¡Aprendo a restar con el Profesor Carlos Huancaya Matos!</h1><p>Resuelve las restas sin llevadas. ¡Tú puedes! 🎈</p></header>
+<section class="card" aria-label="Juego de restas"><div class="top"><span id="counter">Ejercicio 1 de 40</span><span id="score">⭐ Aciertos: 0</span></div><div class="bar" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0" id="progress"><div class="fill" id="fill"></div></div><div id="game"><label class="prompt" for="answer">Escribe tu respuesta:</label><div class="math" aria-label="Operación"><span></span><span class="digit" id="topNumber">45</span><span class="minus">−</span><span class="digit" id="bottomNumber">23</span><div class="line"></div><div class="answer-row"><input id="tens" class="answer" type="text" maxlength="1" inputmode="numeric" autocomplete="off" aria-label="Decenas de la respuesta" aria-describedby="feedback"><input id="units" class="answer" type="text" maxlength="1" inputmode="numeric" autocomplete="off" aria-label="Unidades de la respuesta" aria-describedby="feedback"></div></div><div class="buttons"><button id="check" class="primary">✓ COMPROBAR</button><button id="next" class="next hidden">SIGUIENTE ➜</button></div><p class="feedback" id="feedback" aria-live="polite"></p></div><div id="finished" class="hidden"><div style="font-size:5rem" aria-hidden="true">🏆</div><h2 style="font-size:2.2rem">¡Terminaste los 40 ejercicios!</h2><p id="finalScore" style="font-size:1.6rem"></p><button id="restart" class="primary">🔄 JUGAR OTRA VEZ</button></div></section><p class="footer">💛 Aprende a tu ritmo. Cada intento te ayuda a mejorar.</p></main><canvas id="confettiCanvas" aria-hidden="true"></canvas><div id="reaction" class="hidden" role="status" aria-live="assertive"><div class="reaction-box"><div class="reaction-emoji" id="reactionEmoji" aria-hidden="true"></div><div class="reaction-message" id="reactionMessage"></div><div class="reaction-timer" id="reactionTimer"></div></div></div>
+<script>
+'use strict';
+const exercises=[[45,23],[67,34],[89,56],[74,32],[96,45],[58,26],[83,51],[79,47],[65,24],[98,63],[57,35],[86,42],[49,17],[75,53],[68,25],[94,72],[59,38],[87,64],[76,15],[99,77],[63,21],[48,16],[85,43],[69,27],[97,54],[56,14],[78,36],[88,55],[73,41],[95,62],[84,31],[92,60],[77,25],[66,44],[93,52],[68,36],[59,27],[86,53],[75,42],[98,74]];
+// Cada computadora recibe un orden aleatorio independiente, sin servidor.
+function randomInt(max){if(window.crypto?.getRandomValues){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%max;}return Math.floor(Math.random()*max);}
+function shuffle(list){for(let i=list.length-1;i>0;i--){const j=randomInt(i+1);[list[i],list[j]]=[list[j],list[i]];}return list;}
+shuffle(exercises);
+let index=0,score=0,solved=false,busy=false,timeoutId=null,animationId=null;
+const $=id=>document.getElementById(id);
+const canvas=$('confettiCanvas'),ctx=canvas.getContext('2d');
+function resizeCanvas(){const dpr=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();
+function confettiForFiveSeconds(){
+ const colors=['#ff5277','#ffcc38','#44c6ef','#7d55d9','#54d98d','#ff8b45'];
+ const pieces=Array.from({length:210},()=>({x:Math.random()*innerWidth,y:-Math.random()*innerHeight,w:5+Math.random()*9,h:8+Math.random()*12,v:2+Math.random()*4,drift:(Math.random()-.5)*3,rot:Math.random()*6.28,spin:(Math.random()-.5)*.15,color:colors[randomInt(colors.length)]}));
+ const started=performance.now();
+ function draw(now){ctx.clearRect(0,0,innerWidth,innerHeight);if(now-started>=5000){animationId=null;return;}
+ for(const p of pieces){p.y+=p.v;p.x+=p.drift;p.rot+=p.spin;if(p.y>innerHeight+20){p.y=-20;p.x=Math.random()*innerWidth;}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();}
+ animationId=requestAnimationFrame(draw);}
+ animationId=requestAnimationFrame(draw);
+}
+function reaction(emoji,message){$('reactionEmoji').textContent=emoji;$('reactionMessage').textContent=message;$('reactionTimer').textContent='Espera 5 segundos…';$('reaction').classList.remove('hidden');}
+function hideReaction(){$('reaction').classList.add('hidden');}
+function show(){busy=false;solved=false;const [a,b]=exercises[index];$('topNumber').textContent=a;$('bottomNumber').textContent=b;$('counter').textContent=`Ejercicio ${index+1} de ${exercises.length}`;$('score').textContent=`⭐ Aciertos: ${score}`;$('tens').value='';$('units').value='';$('tens').disabled=false;$('units').disabled=false;$('check').disabled=false;$('check').classList.remove('hidden');$('next').classList.add('hidden');$('feedback').textContent='';$('feedback').className='feedback';$('fill').style.width=`${index/exercises.length*100}%`;$('progress').setAttribute('aria-valuenow',index);$('tens').focus();}
+function check(){
+ if(busy||solved)return;
+ const raw=$('tens').value+$('units').value;
+ if(!/^\d{2}$/.test(raw)){$('feedback').textContent='✏️ Escribe una cifra en cada cuadrado.';$('feedback').className='feedback error';return;}
+ const correct=exercises[index][0]-exercises[index][1];busy=true;$('check').disabled=true;$('tens').disabled=true;$('units').disabled=true;
+ if(Number(raw)===correct){solved=true;score++;$('score').textContent=`⭐ Aciertos: ${score}`;$('feedback').textContent='🎉 ¡Muy bien! ¡Respuesta correcta!';$('feedback').className='feedback success';reaction('🎉','¡Excelente! ¡Lo lograste!');confettiForFiveSeconds();timeoutId=setTimeout(()=>{hideReaction();next();},5000);
+ }else{$('feedback').textContent='😢 ¡Inténtalo otra vez!';$('feedback').className='feedback error';reaction('😢','¡Inténtalo otra vez!');timeoutId=setTimeout(()=>{hideReaction();busy=false;$('check').disabled=false;$('tens').disabled=false;$('units').disabled=false;$('tens').value='';$('units').value='';$('tens').focus();},5000);}
+}
+function next(){if(!solved)return;index++;if(index===exercises.length){$('game').classList.add('hidden');$('finished').classList.remove('hidden');$('counter').textContent='¡Completado!';$('fill').style.width='100%';$('progress').setAttribute('aria-valuenow',exercises.length);$('finalScore').textContent=`¡Respondiste correctamente ${score} de ${exercises.length} restas! 🌟`;$('restart').focus();}else show();}
+$('check').addEventListener('click',check);
+['tens','units'].forEach((id,i)=>{const el=$(id);el.addEventListener('input',()=>{if(busy)return;el.value=el.value.replace(/\D/g,'').slice(-1);if(i===0&&el.value)$('units').focus();});el.addEventListener('keydown',e=>{if(busy)return;if(e.key==='Enter'){e.preventDefault();check();}else if(e.key==='Backspace'&&i===1&&!el.value){$('tens').focus();}});el.addEventListener('paste',e=>{if(busy)return;const pasted=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'');if(pasted.length>=2){e.preventDefault();$('tens').value=pasted[0];$('units').value=pasted[1];$('units').focus();}});});
+$('restart').addEventListener('click',()=>{if(timeoutId)clearTimeout(timeoutId);if(animationId)cancelAnimationFrame(animationId);ctx.clearRect(0,0,innerWidth,innerHeight);hideReaction();shuffle(exercises);index=0;score=0;busy=false;solved=false;$('game').classList.remove('hidden');$('finished').classList.add('hidden');show();});show();
+</script></body></html>
